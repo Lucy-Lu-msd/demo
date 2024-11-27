@@ -46,12 +46,22 @@ jobs:
         with:
           name: java-app
 
-      - name: Login to Azure
-        uses: azure/login@v2
-        with:
-          client-id: ${{ secrets.__clientidsecretname__ }}
-          tenant-id: ${{ secrets.__tenantidsecretname__ }}
-          subscription-id: ${{ secrets.__subscriptionidsecretname__ }}
+#      - name: Login to Azure
+#        uses: azure/login@v2
+#        with:
+#          client-id: ${{ secrets.__clientidsecretname__ }}
+#          tenant-id: ${{ secrets.__tenantidsecretname__ }}
+#          subscription-id: ${{ secrets.__subscriptionidsecretname__ }}
+#          client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}  # Add the client secret to GitHub Secrets
+
+      - name: Set up Azure CLI
+        uses: azure/setup-azurecli@v2
+
+      - name: Login to Azure (Interactive)
+        run: |
+          az login
+          # This will trigger an interactive login in the GitHub Actions environment.
+          # A URL will be provided, and you will need to authenticate manually with your Azure account.
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
