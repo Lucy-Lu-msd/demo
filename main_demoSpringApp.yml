@@ -25,6 +25,12 @@ jobs:
       - name: Build with Maven
         run: mvn clean package # Build the JAR file
 
+
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
       - name: Run Java unit tests
         run: mvn test # Execute unit tests using Maven
         continue-on-error: false  # Fail the job if tests fail, you can change this to true if you want to continue even on test failure.
