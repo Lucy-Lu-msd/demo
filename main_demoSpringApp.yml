@@ -20,10 +20,10 @@ jobs:
         uses: actions/setup-java@v4
         with:
           java-version: '17'
-          distribution: 'temurin'
+          distribution: 'Microsoft'
 
       - name: Build with Maven
-        run: mvn clean package
+        run: mvn clean package # This will build the JAR file
 
       - name: Run Java unit tests
         run: mvn test # This will execute the unit tests using Maven
